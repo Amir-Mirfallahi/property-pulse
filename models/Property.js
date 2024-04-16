@@ -1,10 +1,10 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models } from 'mongoose';
 
 const PropertySchema = new Schema(
   {
     owner: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
     name: {
@@ -44,23 +44,48 @@ const PropertySchema = new Schema(
       type: Number,
       required: true,
     },
-    amenities: [{ type: String }],
+    amenities: [
+      {
+        type: String,
+      },
+    ],
     rates: {
-      nightly: { type: Number },
-      weekly: { type: Number },
-      monthly: { type: Number },
+      nightly: {
+        type: Number,
+      },
+      weekly: {
+        type: Number,
+      },
+      monthly: {
+        type: Number,
+      },
     },
     seller_info: {
-      name: { type: String },
-      email: { type: String },
-      phone: { type: String },
+      name: {
+        type: String,
+      },
+      email: {
+        type: String,
+      },
+      phone: {
+        type: String,
+      },
     },
-    images: [{ type: String }],
-    is_featured: { type: Boolean, default: false },
+    images: [
+      {
+        type: String,
+      },
+    ],
+    is_featured: {
+      type: Boolean,
+      default: false,
+    },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
-const Property = models.Property || model("Property", PropertySchema);
+const Property = models.Property || model('Property', PropertySchema);
 
 export default Property;

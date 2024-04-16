@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 
 const PropertyHeaderImage = ({ image }) => {
@@ -7,12 +6,12 @@ const PropertyHeaderImage = ({ image }) => {
       <div className="container-xl m-auto">
         <div className="grid grid-cols-1">
           <Image
-            src={`/images/properties/${image}`}
+            src={image}
             alt=""
-            height={0}
+            className="object-cover h-[400px] w-full"
             width={0}
+            height={0}
             sizes="100vw"
-            className="object-cover h-[400px] w-full w-full"
             priority={true}
           />
         </div>
@@ -20,5 +19,4 @@ const PropertyHeaderImage = ({ image }) => {
     </section>
   );
 };
-
 export default PropertyHeaderImage;

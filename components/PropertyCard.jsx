@@ -10,7 +10,8 @@ import {
 
 const PropertyCard = ({ property }) => {
   const getRateDisplay = () => {
-    const rates = property.rates;
+    const { rates } = property;
+
     if (rates.monthly) {
       return `${rates.monthly.toLocaleString()}/mo`;
     } else if (rates.weekly) {
@@ -19,13 +20,14 @@ const PropertyCard = ({ property }) => {
       return `${rates.nightly.toLocaleString()}/night`;
     }
   };
+
   return (
     <div className="rounded-xl shadow-md relative">
       <Image
-        src={`/images/properties/${property.images[0]}`}
+        src={property.images[0]}
         alt=""
-        width={0}
         height={0}
+        width={0}
         sizes="100vw"
         className="w-full h-auto rounded-t-xl"
       />
@@ -44,8 +46,8 @@ const PropertyCard = ({ property }) => {
             <span className="md:hidden lg:inline">Beds</span>
           </p>
           <p>
-            <FaBath className="inline mr-2" /> {property.baths}{" "}
-            <span className="md:hidden lg:inline">Baths</span>
+            <FaBath className="inline mr-2" />
+            {property.baths} <span className="md:hidden lg:inline">Baths</span>
           </p>
           <p>
             <FaRulerCombined className="inline mr-2" />
@@ -60,11 +62,13 @@ const PropertyCard = ({ property }) => {
               <FaMoneyBill className="inline mr-2" /> Nightly
             </p>
           )}
+
           {property.rates.weekly && (
             <p>
               <FaMoneyBill className="inline mr-2" /> Weekly
             </p>
           )}
+
           {property.rates.monthly && (
             <p>
               <FaMoneyBill className="inline mr-2" /> Monthly
@@ -76,7 +80,7 @@ const PropertyCard = ({ property }) => {
 
         <div className="flex flex-col lg:flex-row justify-between mb-4">
           <div className="flex align-middle gap-2 mb-4 lg:mb-0">
-            <FaMapMarker className="text-lg text-orange-700 mt-1" />
+            <FaMapMarker className="text-orange-700 mt-1" />
             <span className="text-orange-700">
               {" "}
               {property.location.city} {property.location.state}{" "}
@@ -93,5 +97,4 @@ const PropertyCard = ({ property }) => {
     </div>
   );
 };
-
 export default PropertyCard;
