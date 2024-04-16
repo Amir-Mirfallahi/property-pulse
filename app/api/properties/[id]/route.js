@@ -7,22 +7,13 @@ export const GET = async (request, { params }) => {
   try {
     const propertyId = params.id;
 
-    const sessionUser = await getSessionUser();
-
-    // Check for session
-    if (!sessionUser || !sessionUser.userId) {
-      return new Response("User ID is required!", { status: 401 });
-    }
-
-    const { userId } = sessionUser;
-
     await connectDB();
 
     const property = await Property.findById(propertyId);
 
     if (!property) return new Response("Property Not Found", { status: 404 });
 
-    return new Response("Property deleted", {
+    return new Response(JSON.stringify(property), {
       status: 200,
     });
   } catch (error) {
